@@ -23,5 +23,12 @@ class MainActivity : AppCompatActivity() {
         btnEx4.setOnClickListener{
             startActivity(Intent(this, Instagram::class.java))
         }
+        btnEx5.setOnClickListener{
+            startActivity(Intent(this,Dialer::class.java))
+        }
+        btnEx6.setOnClickListener{
+            startActivity(Intent(this,Images::class.java))
+        }
+
     }
 }

@@ -8,14 +8,14 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_images.*
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import android.R
+
 import com.bumptech.glide.Priority
 import com.bumptech.glide.request.RequestOptions
 
 
 
 class Images : AppCompatActivity(){
-    /*private val circularProgressDrawable = CircularProgressDrawable(this)*/
+
     private val url
             = arrayOf("https://tinyurl.com/yypw59xh",
                       "https://tinyurl.com/y3bydso9",
@@ -32,11 +32,10 @@ class Images : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_images)
         getImage()
-/*
+        var circularProgressDrawable = CircularProgressDrawable(this)
         circularProgressDrawable.strokeWidth = 5f
         circularProgressDrawable.centerRadius = 30f
         circularProgressDrawable.start()
-*/
     }
      fun loadImageUrl(view: View){
         var button: Button = findViewById(view.id)
@@ -54,16 +53,10 @@ class Images : AppCompatActivity(){
         }
         getImage()
     }
-    private fun getImage(){
+    public fun getImage(){
         Glide.with(this)
             .load(url[index])
             .into(imageView)
     }
-    var options = RequestOptions()
-        .centerCrop()
-        .placeholder(res.drawable.)
-        .diskCacheStrategy(DiskCacheStrategy.ALL)
-        .priority(Priority.HIGH)
-        .dontAnimate()
-        .dontTransform()
+
 }
