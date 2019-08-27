@@ -22,6 +22,7 @@
         <activity android:name=".Instagram" />
         <activity android:name=".Dialer" />
         <activity android:name=".Images" />
+        <activity android:name=".Contacts" />
     </application>
 
 </manifest>

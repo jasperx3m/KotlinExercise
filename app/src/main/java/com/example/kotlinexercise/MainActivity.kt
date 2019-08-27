@@ -29,6 +29,10 @@ class MainActivity : AppCompatActivity() {
         btnEx6.setOnClickListener{
             startActivity(Intent(this,Images::class.java))
         }
+        btnEx7.setOnClickListener{
+           var intent =  Intent(this,Contacts::class.java)
+            startActivity(intent)
+        }
 
     }
 }

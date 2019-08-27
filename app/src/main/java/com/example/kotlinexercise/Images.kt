@@ -1,5 +1,6 @@
 package com.example.kotlinexercise
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -11,8 +12,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 import com.bumptech.glide.Priority
 import com.bumptech.glide.request.RequestOptions
-
-
 
 class Images : AppCompatActivity(){
 
@@ -27,15 +26,11 @@ class Images : AppCompatActivity(){
                       "https://tinyurl.com/y6t2pfdv",
                       "https://tinyurl.com/y2nt9kt9")
     var index: Int=0
-
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_images)
         getImage()
-        var circularProgressDrawable = CircularProgressDrawable(this)
-        circularProgressDrawable.strokeWidth = 5f
-        circularProgressDrawable.centerRadius = 30f
-        circularProgressDrawable.start()
+
     }
      fun loadImageUrl(view: View){
         var button: Button = findViewById(view.id)
@@ -53,9 +48,16 @@ class Images : AppCompatActivity(){
         }
         getImage()
     }
-    public fun getImage(){
+    private fun getImage(){
+        var circularProgressDrawable = CircularProgressDrawable(this)
+        circularProgressDrawable.strokeWidth = 5f
+        circularProgressDrawable.centerRadius = 30f
+        circularProgressDrawable.start()
         Glide.with(this)
             .load(url[index])
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true)
+            .placeholder(circularProgressDrawable)
             .into(imageView)
     }
 
