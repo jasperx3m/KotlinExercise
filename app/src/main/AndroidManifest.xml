@@ -23,6 +23,12 @@
         <activity android:name=".Dialer" />
         <activity android:name=".Images" />
         <activity android:name=".Contacts" />
+        <activity android:name=".ContactDetails" />
+        <activity android:name=".MovieActivity" />
+        <activity android:name=".MovieDetails" />
+        <activity android:name=".MovieForm" />
+        <activity android:name=".ProductsActivity" />
+        <activity android:name=".ProductDetails" />
     </application>
 
 </manifest>

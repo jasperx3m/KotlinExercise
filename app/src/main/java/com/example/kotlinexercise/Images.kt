@@ -1,6 +1,5 @@
 package com.example.kotlinexercise
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -9,9 +8,6 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_images.*
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-
-import com.bumptech.glide.Priority
-import com.bumptech.glide.request.RequestOptions
 
 class Images : AppCompatActivity(){
 
@@ -58,7 +54,7 @@ class Images : AppCompatActivity(){
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .skipMemoryCache(true)
             .placeholder(circularProgressDrawable)
-            .into(imageView)
+            .into(detailImage)
     }
 
 }

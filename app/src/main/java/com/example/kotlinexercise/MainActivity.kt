@@ -33,6 +33,14 @@ class MainActivity : AppCompatActivity() {
            var intent =  Intent(this,Contacts::class.java)
             startActivity(intent)
         }
+        btnEx8.setOnClickListener{
+            var intent = Intent(this, MovieActivity::class.java)
+            startActivity(intent)
+        }
+        btnEx9.setOnClickListener{
+            var intent = Intent( this, ProductsActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }
