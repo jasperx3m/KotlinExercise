@@ -2,6 +2,7 @@ package com.example.kotlinexercise
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -28,10 +29,10 @@ class ProductsActivity : AppCompatActivity(), ProductsAdapter.OnProductClickList
             fetchProducts()
         }
 
-        /*addProductsButton.setOnClickListener{
+        addProductsButton.setOnClickListener{
             var intent = Intent(this, ProductForm::class.java)
             startActivity(intent)
-        }*/
+        }
     }
     private fun fetchProducts(){
         ProductsApi().getProducts().enqueue(object: Callback<MutableList<Products>>{
@@ -40,9 +41,7 @@ class ProductsActivity : AppCompatActivity(), ProductsAdapter.OnProductClickList
             }
             override fun onResponse(call:Call<MutableList<Products>>, response : Response<MutableList<Products>>){
                 val products = response.body()
-                products?.let{
-                    showProducts(it)
-                }
+                products?.let { showProducts(it) }
             }
         })
     }
@@ -58,8 +57,7 @@ class ProductsActivity : AppCompatActivity(), ProductsAdapter.OnProductClickList
 
     override fun onProductClick(position: Int){
 
-        var intent= Intent(this,MovieDetails::class.java)
-
+        var intent= Intent(this,ProductDetails::class.java)
         startActivity(intent.putExtra("movie",productList[position]))
     }
 

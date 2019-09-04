@@ -34,7 +34,7 @@ class ProductsAdapter (private var products: List<Products>, var context: Contex
         Glide.with(context)
             .load(product.imageUrl)
             .placeholder(circularProgressDrawable)
-            .into(holder.itemView.movieImage)
+            .into(holder.itemView.productImage)
     }
 
     class ProductsViewHolder(itemView: View, var OnProductClickListener: OnProductClickListener) : RecyclerView.ViewHolder(itemView)

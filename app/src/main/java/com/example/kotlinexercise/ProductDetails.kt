@@ -13,10 +13,11 @@ class ProductDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_details)
         val product = intent.getSerializableExtra("movie") as Products
-        detailID.text= product.id.toString()
+        detailID.text= product.id
         detailName.text=product.name
         detailPrice.text="₱ " +product.price.toString()
         detailDescription.text= product.description
+        checkBox.isChecked = product.isActive.toBoolean()
 
         getImage(product.imageUrl)
     }

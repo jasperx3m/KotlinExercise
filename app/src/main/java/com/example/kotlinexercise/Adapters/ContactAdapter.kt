@@ -31,13 +31,6 @@ class ContactAdapter (private var contacts: List<Contact>, private var onClickLi
     }
 
 
-    companion object{
-
-        fun setOnClickListener(onClickListener: OnClickListener): OnClickListener{
-            return onClickListener
-        }
-    }
-
 
     class ContactViewHolder(itemView: View
                             , var onClickListener: OnClickListener) : RecyclerView.ViewHolder(itemView)
