@@ -63,7 +63,6 @@ interface ProductsApi {
         @Field("imageUrl") imageUrl : String,
         @Field("isActive") isActive: String*/
     ) : Call<PostProducts>
-
     @PUT("products/{id}")
     fun updateProduct(
         @Path("id" )id:String,
@@ -73,7 +72,7 @@ interface ProductsApi {
     @DELETE("products/{id}")
     fun deleteProduct(
         @Path("id") id: String
-    )
+    ) : Call<Products>
 
 }
 

@@ -33,6 +33,7 @@
         <activity android:name=".ProductsActivity" />
         <activity android:name=".ProductDetails" />
         <activity android:name=".ProductForm" />
+        <activity android:name=".ProductEditForm" />
     </application>
 
 </manifest>

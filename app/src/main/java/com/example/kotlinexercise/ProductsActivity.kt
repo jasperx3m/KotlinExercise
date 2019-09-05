@@ -62,38 +62,55 @@ class ProductsActivity : AppCompatActivity(), ProductsAdapter.OnProductClickList
     }
 
     override fun onProductLongClick(position: Int) {
-        deleteProduct(position)
+        var intent = Intent(this,ProductEditForm::class.java)
+        startActivity(intent.putExtra("movie",productList[position]))
     }
 
     private fun deleteProduct(position: Int){
         var temporaryProduct = productList[position]
+        var isUndone: Boolean = false
         productList.removeAt(position)
         showProducts(productList)
-        var snackbar = Snackbar.make(productLayoutConstraint," ${productList[position].name} Deleted", Snackbar.LENGTH_LONG)
+        var snackbar = Snackbar.make(
+            productLayoutConstraint,
+            " ${productList[position].name} Deleted",
+            Snackbar.LENGTH_LONG
+        )
         snackbar.setAction("UNDO") {
-            undoDelete(position,temporaryProduct)
+            isUndone = true
+            if (isUndone) {
+                productList.add(position, temporaryProduct)
+                Toast.makeText(
+                    this, "${
+                    productList[position].name} has been restored", Toast.LENGTH_SHORT
+                ).show()
+                showProducts(productList)
+            }
         }
-        snackbar.show()
+
+            if (!isUndone) {
+                ProductsApi().deleteProduct(temporaryProduct.id)
+                    .enqueue(object : Callback<Products> {
+                        override fun onFailure(call: Call<Products>, t: Throwable) {
+                            Toast.makeText(applicationContext, "failure " + t.message, Toast.LENGTH_LONG).show()
+                        }
+
+                        override fun onResponse(call: Call<Products>, response: Response<Products>) {
+                            Toast.makeText(applicationContext, response.body()?.toString(), Toast.LENGTH_LONG).show()
+                        }
+                    })
+                snackbar.show()
+            }
     }
-    private fun undoDelete(position: Int, temporaryProduct: Products){
-        productList.add(position,temporaryProduct)
-        Toast.makeText(this,"${
-        productList[position].name} has been restored", Toast.LENGTH_SHORT).show()
-        showProducts(productList)
-    }
-    inner  class SwipeToDeleteCallBack : ItemTouchHelper.SimpleCallback(0,
-        ItemTouchHelper.RIGHT
-    ){
-        override fun onMove(
-            recyclerView: RecyclerView,
-            viewHolder: RecyclerView.ViewHolder,
-            target: RecyclerView.ViewHolder
-        ): Boolean {
+
+    inner  class SwipeToDeleteCallBack : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
+        override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
             return false
         }
 
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
             deleteProduct(viewHolder.adapterPosition)
+
         }
     }
 
